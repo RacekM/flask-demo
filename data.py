@@ -1,0 +1,23 @@
+def Movies():
+    movies = [{'id': 1, 'title': 'Harry Potter', 'autor': 'autor1'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 2, 'title': 'Pan Prstenov', 'autor': 'autor2'},
+              {'id': 3, 'title': 'Gladiator', 'autor': 'autor3'}]
+    return movies
