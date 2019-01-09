@@ -1,14 +1,26 @@
 from flask import Flask, render_template
 from flask_paginate import Pagination, get_page_args
-
-from data import Movies
+import omdb
+from data import movies
 
 app = Flask(__name__)
 
-movies = Movies()
+def loadMoviesInfo(moviesIds):
+    res = []
+    for mov_id in moviesIds:
+        res.append(getMovieInfo(mov_id[0]))
+    return res
 
-def get_movies(offset=0, per_page=10):
-    return movies[offset: offset + per_page]
+def getMovieInfo(movId):
+    movie_info = omdb.imdbid(movId, timeout=5)
+    movie_info['id'] = movId
+    return movie_info
+
+def get_movies(offset=0, per_page=2):
+    mov = movies(offset, per_page)
+    movie_infos = loadMoviesInfo(mov)
+    print(movie_infos)
+    return movie_infos
 
 @app.route('/')
 def index():
@@ -20,19 +32,23 @@ def about():
 
 @app.route('/movies')
 def movies_list():
-   page, per_page, offset = get_page_args(page_parameter='page',
-                                           per_page_parameter='per_page')
-   total = len(movies)
-   pagination_movies = get_movies(offset=offset, per_page=per_page)
-   print(per_page)
-   pagination = Pagination(page=page, per_page=per_page, total=total,
+    page, per_page, offset = get_page_args(page_parameter='page',
+                                            per_page_parameter='per_page')
+    total = 100
+    # total by mal obsahovat pocet filmov koli poctu stranok
+    pagination_movies = get_movies(offset=offset, per_page=per_page)
+    print(per_page)
+    pagination = Pagination(page=page, per_page=per_page, total=total,
                             css_framework='bootstrap4')
 
-   return render_template('movies.html', movies=pagination_movies,page=page,per_page=per_page,pagination=pagination)
+    return render_template('movies.html', movies=pagination_movies,page=page,per_page=per_page,pagination=pagination)
 
 @app.route('/movie/<string:id>/')
 def movie(id):
-   return render_template('movie.html', id=id)
+    movie = getMovieInfo(id)
+    print(movie)
+    return render_template('movie.html', movie=movie)
 
 if __name__ == "__main__":
+    omdb.set_default('apikey', '596d8b73')
     app.run(debug = True)
