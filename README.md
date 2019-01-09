@@ -1,4 +1,2 @@
-# flask-demo
-- pip install flask
-- pip install flask-paginate
-- python app.py
+pip install -r requierements.txt
+python app.py

@@ -1,0 +1,4 @@
+pandas
+omdb
+flask
+flask-paginate
