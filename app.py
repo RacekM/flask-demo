@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask_paginate import Pagination, get_page_args
 import omdb
-from data import movies
+from data import *
 
 app = Flask(__name__)
 
@@ -19,7 +19,7 @@ def getMovieInfo(movId):
 def get_movies(offset=0, per_page=2):
     mov = movies(offset, per_page)
     movie_infos = loadMoviesInfo(mov)
-    print(movie_infos)
+    #print(movie_infos)
     return movie_infos
 
 @app.route('/')
@@ -34,10 +34,10 @@ def about():
 def movies_list():
     page, per_page, offset = get_page_args(page_parameter='page',
                                             per_page_parameter='per_page')
-    total = 100
-    # total by mal obsahovat pocet filmov koli poctu stranok
+    
+    total = getNumberOfMovies()
     pagination_movies = get_movies(offset=offset, per_page=per_page)
-    print(per_page)
+    #print(per_page)
     pagination = Pagination(page=page, per_page=per_page, total=total,
                             css_framework='bootstrap4')
 
@@ -46,9 +46,9 @@ def movies_list():
 @app.route('/movie/<string:id>/')
 def movie(id):
     movie = getMovieInfo(id)
-    print(movie)
     return render_template('movie.html', movie=movie)
 
 if __name__ == "__main__":
+    # can be used for 1000 requests per day
     omdb.set_default('apikey', '596d8b73')
     app.run(debug = True)

@@ -20,10 +20,13 @@ if not os.path.exists('films.db'):
     #os.remove('films.db')
 
 conn = sqlite3.connect('films.db', check_same_thread=False)
-#print(conn.execute("SELECT * FROM t LIMIT 10,10").fetchall())
     
     
 
 def movies(skip, number):
     movies = conn.execute("SELECT MOVIE_ID FROM movieIds LIMIT " + str(skip) + "," + str(number)).fetchall()
     return movies
+
+def getNumberOfMovies():
+    number = conn.execute("SELECT Count(MOVIE_ID) FROM movieIds ").fetchone()
+    return number[0]

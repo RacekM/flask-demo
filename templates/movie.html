@@ -1,7 +1,34 @@
 {% extends 'layout.html'%}
 
 {% block body %}
-	<h1> {{movie.title}} ({{movie.year}})<h1>
-	<p> {{id}} </p>
-	<img src="{{ movie.poster }}" alt="Movie poster">
+
+	<h1> {{movie.title}}<h1>
+	<br />
+
+	<div class="container">
+		<div class="row">
+			
+			<div class="col-lg-6">
+				<img src="{{ movie.poster }}" alt="Movie poster">
+			</div>
+			
+			<div class="col-lg-6"  align="left" style="font-size:50%">
+			<ul>
+				<li><b>Release date :</b> {{movie.released}}</li>
+				<li><b>Runtime :</b> {{movie.runtime}}</li>
+				<li><b>Genre :</b> {{movie.genre}}</li>
+				<li><b>Director :</b> {{movie.director}}</li>
+				<li><b>Writer :</b> {{movie.writer}}</li>
+			</ul>
+			<b>Plot: </b>
+			<p>{{movie.plot}}</p>
+			</div>
+		</div>
+		<div style="text-align: right">
+		<a class="btn btn-primary" href="/movies" role="button">Back</a>
+		</div>
+	</div>
+
+
+	
 {% endblock %}
