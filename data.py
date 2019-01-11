@@ -28,5 +28,7 @@ def movies(skip, number):
     return movies
 
 def getNumberOfMovies():
-    number = conn.execute("SELECT Count(MOVIE_ID) FROM movieIds ").fetchone()
-    return number[0]
+    #the OMDb database is not containning the newest movies. My db contains about 902882 records, but i will access just 800 000.
+    #number = conn.execute("SELECT Count(MOVIE_ID) FROM movieIds ").fetchone()
+    #return number[0]
+    return 800000
