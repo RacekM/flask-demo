@@ -50,5 +50,6 @@ def movie(id):
 
 if __name__ == "__main__":
     # can be used for 1000 requests per day
-    omdb.set_default('apikey', '596d8b73')
+	# Another key -> 596d8b73
+    omdb.set_default('apikey', '586cf9a9')
     app.run(debug = True)
